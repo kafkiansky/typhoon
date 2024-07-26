@@ -6,8 +6,8 @@ namespace Typhoon\Reflection;
 
 use PHPUnit\Framework\TestCase;
 use Typhoon\Reflection\Internal\Data;
-use Typhoon\Reflection\Internal\TypedMap\TypedMap;
 use Typhoon\Reflection\Locator\Resource;
+use Typhoon\TypedMap\TypedMap;
 
 return static function (TyphoonReflector $reflector, TestCase $test): void {
     $reflector = $reflector->withResource(Resource::fromCode(

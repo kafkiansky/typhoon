@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Typhoon\Reflection;
 
 use Typhoon\Reflection\Internal\Data;
-use Typhoon\Reflection\Internal\TypedMap\TypedMap;
 use Typhoon\Reflection\Locator\Resource;
+use Typhoon\TypedMap\TypedMap;
 use function PHPUnit\Framework\assertSame;
 
 return static function (TyphoonReflector $reflector): void {
