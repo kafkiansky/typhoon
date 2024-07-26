@@ -21,6 +21,7 @@ jobs:
           - { namespace: PhpStormReflectionStubs, repo: php-storm-reflection-stubs }
           - { namespace: Reflection, repo: reflection }
           - { namespace: Type, repo: type }
+          - { namespace: TypedMap, repo: typed-map }
     steps:
       - uses: actions/checkout@v4
         with:
