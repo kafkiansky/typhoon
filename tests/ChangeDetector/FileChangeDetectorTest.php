@@ -19,33 +19,38 @@ final class FileChangeDetectorTest extends TestCase
         $this->root = vfsStream::setup();
     }
 
-    public function testFromPathEnsureExistsThrowsIfFileDoesNotExist(): void
-    {
-        $this->expectExceptionObject(new FileIsNotReadable('a.txt'));
-
-        FileChangeDetector::fromPathEnsureExists('a.txt');
-    }
-
     public function testItConsidersTouchedFileNotChanged(): void
     {
         $file = $this->root->url() . '/test.txt';
-        file_put_contents($file, 'content');
-        $detector = FileChangeDetector::fromPath($file);
+        file_put_contents($file, 'test');
+        touch($file, time() - 100);
+        $mtime = filemtime($file);
+        $detector = FileChangeDetector::fromFile($file);
 
         touch($file);
+        clearstatcache();
+        $newMtime = filemtime($file);
+        $changed = $detector->changed();
 
-        self::assertFalse($detector->changed());
+        self::assertNotSame($mtime, $newMtime);
+        self::assertFalse($changed);
     }
 
     public function testItDetectsContentsChange(): void
     {
         $file = $this->root->url() . '/test.txt';
-        file_put_contents($file, 'content');
-        $detector = FileChangeDetector::fromPath($file);
+        file_put_contents($file, 'x');
+        touch($file, time() - 100);
+        $mtime = filemtime($file);
+        $detector = FileChangeDetector::fromFile($file);
 
-        file_put_contents($file, 'new');
+        file_put_contents($file, 'y');
+        clearstatcache();
+        $newMtime = filemtime($file);
+        $changed = $detector->changed();
 
-        self::assertTrue($detector->changed());
+        self::assertNotSame($mtime, $newMtime);
+        self::assertTrue($changed);
     }
 
     public function testItReturnsDeduplicatedDetectors(): void
