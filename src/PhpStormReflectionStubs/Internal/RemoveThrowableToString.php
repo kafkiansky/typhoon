@@ -2,29 +2,38 @@
 
 declare(strict_types=1);
 
-namespace Typhoon\Reflection\Internal\Inheritance;
+namespace Typhoon\PhpStormReflectionStubs\Internal;
 
 use Typhoon\DeclarationId\AnonymousClassId;
 use Typhoon\DeclarationId\NamedClassId;
+use Typhoon\Reflection\Internal\Data;
 use Typhoon\Reflection\Internal\Hook\ClassHook;
 use Typhoon\Reflection\TyphoonReflector;
 use Typhoon\TypedMap\TypedMap;
 
 /**
  * @internal
- * @psalm-internal Typhoon\Reflection
+ * @psalm-internal Typhoon\PhpStormReflectionStubs
  */
-enum ResolveClassInheritance implements ClassHook
+enum RemoveThrowableToString implements ClassHook
 {
     case Instance;
 
     public function priority(): int
     {
-        return -500;
+        return 1000;
     }
 
     public function processClass(NamedClassId|AnonymousClassId $id, TypedMap $data, TyphoonReflector $reflector): TypedMap
     {
-        return ClassInheritance::resolve($id, $data, $reflector);
+        // todo issue
+        if ($id->name === \Throwable::class) {
+            $methods = $data[Data::Methods];
+            unset($methods['__toString']);
+
+            return $data->with(Data::Methods, $methods);
+        }
+
+        return $data;
     }
 }
