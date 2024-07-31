@@ -181,17 +181,17 @@ final class PhpDocTypeReflectorTest extends TestCase
         yield [
             '($return is true ? string : void)',
             types::conditional(types::functionArg('var_export', 'return'), types::true, types::string, types::void),
-            Context::start()->enterFunction('var_export'),
+            Context::start('')->enterFunction('var_export'),
         ];
         yield [
             '($return is not true ? void : string)',
             types::conditional(types::functionArg('var_export', 'return'), types::true, types::string, types::void),
-            Context::start()->enterFunction('var_export'),
+            Context::start('')->enterFunction('var_export'),
         ];
         yield [
             '(T is true ? string : void)',
             types::conditional(types::functionTemplate('x', 'T'), types::true, types::string, types::void),
-            Context::start()->enterFunction('x', templateNames: ['T']),
+            Context::start('')->enterFunction('x', templateNames: ['T']),
         ];
     }
 
@@ -200,7 +200,7 @@ final class PhpDocTypeReflectorTest extends TestCase
      */
     public static function validTypesNamed(): \Generator
     {
-        $defaultContext = Context::start();
+        $defaultContext = Context::start('');
 
         foreach (self::validTypes() as $args) {
             yield $args[0] => [$args[0], $args[1], $args[2] ?? $defaultContext];
@@ -225,7 +225,7 @@ final class PhpDocTypeReflectorTest extends TestCase
 
     public function testItReturnsNullTypeIfNullNodePassed(): void
     {
-        $reflector = new PhpDocTypeReflector(Context::start());
+        $reflector = new PhpDocTypeReflector(Context::start(''));
 
         $result = $reflector->reflectType(null);
 

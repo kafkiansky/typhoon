@@ -14,8 +14,13 @@
     </php>
 
     <testsuites>
-        <testsuite name="default">
+        <testsuite name="main">
             <directory>tests</directory>
+            <exclude>tests/Reflection/Internal/NativeAdapter/AdapterCompatibilityTest.php</exclude>
+        </testsuite>
+
+        <testsuite name="compatibility">
+            <file>tests/Reflection/Internal/NativeAdapter/AdapterCompatibilityTest.php</file>
         </testsuite>
     </testsuites>
 
