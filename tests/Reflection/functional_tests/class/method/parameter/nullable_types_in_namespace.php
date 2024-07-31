@@ -31,8 +31,8 @@ return static function (TyphoonReflector $reflector): void {
         ->methods()['method']
         ->parameters();
 
-    assertNull($parameters['noTypeNoDefault']->type(DeclarationKind::Native));
-    assertNull($parameters['noTypeWithDefault']->type(DeclarationKind::Native));
-    assertEquals(types::nullable(types::string), $parameters['nullableTypeNoDefault']->type(DeclarationKind::Native));
-    assertEquals(types::nullable(types::string), $parameters['nullableTypeWithDefault']->type(DeclarationKind::Native));
+    assertNull($parameters['noTypeNoDefault']->type(TypeKind::Native));
+    assertNull($parameters['noTypeWithDefault']->type(TypeKind::Native));
+    assertEquals(types::nullable(types::string), $parameters['nullableTypeNoDefault']->type(TypeKind::Native));
+    assertEquals(types::nullable(types::string), $parameters['nullableTypeWithDefault']->type(TypeKind::Native));
 };

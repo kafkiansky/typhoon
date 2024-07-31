@@ -31,7 +31,7 @@ return static function (TyphoonReflector $reflector): void {
         ->reflectClass('B')
         ->methods()['a'];
 
-    assertEquals(types::string, $method->returnType(DeclarationKind::Native));
-    assertEquals(types::nonEmptyString, $method->returnType(DeclarationKind::Annotated));
+    assertEquals(types::string, $method->returnType(TypeKind::Native));
+    assertEquals(types::nonEmptyString, $method->returnType(TypeKind::Annotated));
     assertEquals(types::nonEmptyString, $method->returnType());
 };

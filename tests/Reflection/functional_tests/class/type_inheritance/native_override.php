@@ -28,7 +28,7 @@ return static function (TyphoonReflector $reflector): void {
         ->reflectClass('B')
         ->methods()['a'];
 
-    assertEquals(types::string, $method->returnType(DeclarationKind::Native));
-    assertNull($method->returnType(DeclarationKind::Annotated));
+    assertEquals(types::string, $method->returnType(TypeKind::Native));
+    assertNull($method->returnType(TypeKind::Annotated));
     assertEquals(types::string, $method->returnType());
 };

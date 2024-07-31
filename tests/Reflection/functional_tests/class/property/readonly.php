@@ -31,22 +31,22 @@ return static function (TyphoonReflector $reflector): void {
         ->properties();
 
     $notReadonly = $properties['notReadonly'];
-    assertFalse($notReadonly->isReadonly(DeclarationKind::Native));
-    assertFalse($notReadonly->isReadonly(DeclarationKind::Annotated));
+    assertFalse($notReadonly->isReadonly(ModifierKind::Native));
+    assertFalse($notReadonly->isReadonly(ModifierKind::Annotated));
     assertFalse($notReadonly->isReadonly());
 
     $nativeReadonly = $properties['nativeReadonly'];
-    assertTrue($nativeReadonly->isReadonly(DeclarationKind::Native));
-    assertFalse($nativeReadonly->isReadonly(DeclarationKind::Annotated));
+    assertTrue($nativeReadonly->isReadonly(ModifierKind::Native));
+    assertFalse($nativeReadonly->isReadonly(ModifierKind::Annotated));
     assertTrue($nativeReadonly->isReadonly());
 
     $phpDocReadonly = $properties['phpDocReadonly'];
-    assertFalse($phpDocReadonly->isReadonly(DeclarationKind::Native));
-    assertTrue($phpDocReadonly->isReadonly(DeclarationKind::Annotated));
+    assertFalse($phpDocReadonly->isReadonly(ModifierKind::Native));
+    assertTrue($phpDocReadonly->isReadonly(ModifierKind::Annotated));
     assertTrue($phpDocReadonly->isReadonly());
 
     $nativeAndPhpDocReadonly = $properties['nativeAndPhpDocReadonly'];
-    assertTrue($nativeAndPhpDocReadonly->isReadonly(DeclarationKind::Native));
-    assertTrue($nativeAndPhpDocReadonly->isReadonly(DeclarationKind::Annotated));
+    assertTrue($nativeAndPhpDocReadonly->isReadonly(ModifierKind::Native));
+    assertTrue($nativeAndPhpDocReadonly->isReadonly(ModifierKind::Annotated));
     assertTrue($nativeAndPhpDocReadonly->isReadonly());
 };

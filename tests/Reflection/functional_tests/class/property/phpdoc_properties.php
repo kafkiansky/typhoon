@@ -29,20 +29,20 @@ return static function (TyphoonReflector $reflector): void {
     $prop1 = $properties['prop1'];
     assertTrue($prop1->isAnnotated());
     assertFalse($prop1->isNative());
-    assertFalse($prop1->isReadonly(DeclarationKind::Native));
-    assertFalse($prop1->isReadonly(DeclarationKind::Annotated));
+    assertFalse($prop1->isReadonly(ModifierKind::Native));
+    assertFalse($prop1->isReadonly(ModifierKind::Annotated));
     assertFalse($prop1->isReadonly());
-    assertNull($prop1->type(DeclarationKind::Native));
-    assertSame(types::nonEmptyString, $prop1->type(DeclarationKind::Annotated));
+    assertNull($prop1->type(TypeKind::Native));
+    assertSame(types::nonEmptyString, $prop1->type(TypeKind::Annotated));
     assertSame(types::nonEmptyString, $prop1->type());
 
     $prop2 = $properties['prop2'];
     assertTrue($prop2->isAnnotated());
     assertFalse($prop2->isNative());
-    assertFalse($prop2->isReadonly(DeclarationKind::Native));
-    assertTrue($prop2->isReadonly(DeclarationKind::Annotated));
+    assertFalse($prop2->isReadonly(ModifierKind::Native));
+    assertTrue($prop2->isReadonly(ModifierKind::Annotated));
     assertTrue($prop2->isReadonly());
-    assertNull($prop2->type(DeclarationKind::Native));
-    assertSame(types::positiveInt, $prop2->type(DeclarationKind::Annotated));
+    assertNull($prop2->type(TypeKind::Native));
+    assertSame(types::positiveInt, $prop2->type(TypeKind::Annotated));
     assertSame(types::positiveInt, $prop2->type());
 };

@@ -15,7 +15,7 @@ return static function (TyphoonReflector $reflector): void {
         ->reflectClass('A')
         ->enumCases()['X'];
 
-    assertNull($reflection->type(DeclarationKind::Native));
-    assertEquals(types::classConstant('A', 'X'), $reflection->type(DeclarationKind::Annotated));
+    assertNull($reflection->type(TypeKind::Native));
+    assertEquals(types::classConstant('A', 'X'), $reflection->type(TypeKind::Annotated));
     assertEquals(types::classConstant('A', 'X'), $reflection->type());
 };
