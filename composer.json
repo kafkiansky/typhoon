@@ -6,6 +6,10 @@
         {
             "name": "Valentin Udaltsov",
             "email": "udaltsov.valentin@gmail.com"
+        },
+        {
+            "name": "Typhoon Team",
+            "homepage": "https://github.com/orgs/typhoon-php/people"
         }
     ],
     "require": {
