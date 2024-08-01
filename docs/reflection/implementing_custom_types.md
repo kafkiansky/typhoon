@@ -51,7 +51,7 @@ final readonly class Message
     ) {}
 }
 
-$reflector = TyphoonReflector::build(customTypeResolver: binary::int16);
+$reflector = TyphoonReflector::build(customTypeResolvers: [binary::int16]);
 
 $propertyType = $reflector
     ->reflectClass(Message::class)
