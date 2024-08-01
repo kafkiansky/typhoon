@@ -208,6 +208,10 @@ namespace Methods
         public function a(): void;
     }
 
+    interface InterfaceInheritsMethod extends InterfaceWithMethod
+    {
+    }
+
     class ClassWithMethods
     {
         public function public(string &$byRef): void {}
