@@ -9,11 +9,11 @@ use Typhoon\DeclarationId\Id;
 /**
  * @internal
  * @psalm-internal Typhoon
- * @template-covariant TId of Id
+ * @template TId of Id
  * @template-covariant TValue
+ * @psalm-suppress InvalidTemplateParam
  * @implements \ArrayAccess<TId, TValue>
  * @implements \IteratorAggregate<TId, TValue>
- * @psalm-suppress InvalidTemplateParam
  */
 final class IdMap implements \ArrayAccess, \IteratorAggregate, \Countable
 {
@@ -94,7 +94,7 @@ final class IdMap implements \ArrayAccess, \IteratorAggregate, \Countable
      */
     public function offsetGet(mixed $offset): mixed
     {
-        return $this->values[$offset->encode()][1] ?? throw new \LogicException();
+        return $this->values[$offset->encode()][1] ?? throw new IdIsNotDefined($offset);
     }
 
     public function offsetSet(mixed $offset, mixed $value): void
