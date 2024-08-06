@@ -27,7 +27,7 @@ final class FindAndCompileVisitor extends NodeVisitorAbstract
 
     public function leaveNode(Node $node): ?int
     {
-        $compiler = new ConstantExpressionCompiler($this->contextProvider->current());
+        $compiler = new ConstantExpressionCompiler($this->contextProvider->get());
 
         foreach (($this->expressionFinder)($node) as $key => $expr) {
             $this->expressions[$key] = $compiler->compile($expr);

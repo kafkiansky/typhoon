@@ -27,7 +27,7 @@ final class FindAndReflectVisitor extends NodeVisitorAbstract
 
     public function leaveNode(Node $node): ?int
     {
-        $reflector = new ConstantExpressionTypeReflector($this->contextProvider->current());
+        $reflector = new ConstantExpressionTypeReflector($this->contextProvider->get());
 
         foreach (($this->expressionFinder)($node) as $key => $expr) {
             $this->types[$key] = $reflector->reflect($expr);
